@@ -94,6 +94,10 @@ Wi-Fi image viewing accesses a LAN HTTP service on the glasses. The demo enables
   - Query image list: `GDBleSdk.viewMedia("image", page, pageSize)`
   - Load thumbnails: `GET http://{ip}:{port}/thumb/image/{id}`
   - Load full images: `GET http://{ip}:{port}/raw/image/{id}`
+  - Query video list: `GDBleSdk.viewMedia("video", page, pageSize)`
+  - Load video previews: `GET http://{ip}:{port}/thumb/video/{id}`
+  - Download full video files: `GET http://{ip}:{port}/raw/video/{id}`
+  - Stream/play or download video: `GET http://{ip}:{port}/stream/video/{id}`
   - Stop the glasses Wi-Fi service: `GDBleSdk.stopWifiService()`
 - Teleprompter file transfer:
   - Query file list: `GDBleSdk.viewFile("com.goolton.teleprompter")`
@@ -207,6 +211,16 @@ val thumbUrl = "$baseUrl/thumb/image/${file.id}"
 val rawUrl = "$baseUrl/raw/image/${file.id}"
 ```
 
+Video APIs follow the same flow as images. This demo does not add a separate video screen:
+
+```kotlin
+GDBleSdk.viewMedia(type = "video", page = 1, pageSize = 100)
+
+val videoThumbUrl = "$baseUrl/thumb/video/${file.id}"
+val videoRawUrl = "$baseUrl/raw/video/${file.id}"
+val videoStreamUrl = "$baseUrl/stream/video/${file.id}"
+```
+
 Remove the listener when the page is destroyed:
 
 ```kotlin
@@ -267,6 +281,7 @@ The Wi-Fi image screen demonstrates the glasses image service:
 - Requests the image list after the health check succeeds
 - Loads thumbnails from `/thumb/image/{id}`
 - Loads the full image from `/raw/image/{id}` when a list item is tapped
+- Video support follows the same pattern with `/thumb/video/{id}` previews, `/raw/video/{id}` full files, and `/stream/video/{id}` streaming links
 
 ## Notes
 
