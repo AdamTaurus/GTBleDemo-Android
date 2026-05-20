@@ -115,7 +115,11 @@ Wi-Fi image viewing accesses a LAN HTTP service on the glasses. The demo enables
 
 ## Build and Run
 
-Build the debug APK from the repository root:
+Customers can directly download and install the current prebuilt debug APK:
+
+[Download app-debug.apk](app/build/outputs/apk/debug/app-debug.apk)
+
+To build it yourself, run from the repository root:
 
 ```bash
 ./gradlew :app:assembleDebug
