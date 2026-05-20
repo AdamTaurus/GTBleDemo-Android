@@ -148,6 +148,9 @@ class MainActivity : ComponentActivity() {
                     onOpenFileTransferClick = {
                         startActivity(Intent(this, FileTransferActivity::class.java))
                     },
+                    onOpenCustomMessageClick = {
+                        startActivity(Intent(this, CustomMessageActivity::class.java))
+                    },
                 )
             }
         }
@@ -262,6 +265,7 @@ private fun MainScreen(
     onRefreshDeviceInfoClick: () -> Unit,
     onOpenRemoteKeyClick: () -> Unit,
     onOpenFileTransferClick: () -> Unit,
+    onOpenCustomMessageClick: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -291,6 +295,7 @@ private fun MainScreen(
                 onRefreshDeviceInfoClick = onRefreshDeviceInfoClick,
                 onOpenRemoteKeyClick = onOpenRemoteKeyClick,
                 onOpenFileTransferClick = onOpenFileTransferClick,
+                onOpenCustomMessageClick = onOpenCustomMessageClick,
             )
         }
 
@@ -339,6 +344,7 @@ private fun ConnectionPanel(
     onRefreshDeviceInfoClick: () -> Unit,
     onOpenRemoteKeyClick: () -> Unit,
     onOpenFileTransferClick: () -> Unit,
+    onOpenCustomMessageClick: () -> Unit,
 ) {
     val connected = state.connectionState == ConnectionUiState.Connected
     DemoCard {
@@ -411,6 +417,12 @@ private fun ConnectionPanel(
             modifier = Modifier.fillMaxWidth(),
             enabled = connected,
             onClick = onOpenFileTransferClick,
+        )
+        RowButton(
+            text = stringResource(R.string.button_custom_message),
+            modifier = Modifier.fillMaxWidth(),
+            enabled = connected,
+            onClick = onOpenCustomMessageClick,
         )
     }
 }

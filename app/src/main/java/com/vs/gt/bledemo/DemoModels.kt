@@ -53,3 +53,17 @@ data class FileTransferUiState(
     val latestDownloadPath: String? = null,
     val logs: List<String> = emptyList(),
 )
+
+/**
+ * 自定义消息页面展示所需状态。
+ *
+ * 这里把用户输入和最近发送的 JSON 一起放在状态里，方便客户复制后迁移到自己的
+ * ViewModel 或状态管理方案中。
+ */
+data class CustomMessageUiState(
+    val connected: Boolean = false,
+    val packageName: String = "",
+    val dataText: String = "",
+    val latestSentJson: String? = null,
+    val logs: List<String> = emptyList(),
+)

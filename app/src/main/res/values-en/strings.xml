@@ -21,12 +21,14 @@
     <string name="button_device_info">Device Info</string>
     <string name="button_remote_keys">Remote Keys</string>
     <string name="button_file_transfer">File Transfer</string>
+    <string name="button_custom_message">Custom Message</string>
     <string name="button_connect">Connect</string>
     <string name="button_reconnect">Reconnect</string>
     <string name="button_back_to_main">Back to Main</string>
     <string name="button_query_file_list">Query File List</string>
     <string name="button_upload_test_file">Upload Test File</string>
     <string name="button_download">Download</string>
+    <string name="button_send_custom_message">Send Custom Message</string>
 
     <string name="remote_key_title">Remote Keys</string>
     <string name="remote_key_subtitle">Send directional key events to the connected glasses</string>
@@ -53,6 +55,15 @@
     <string name="file_transfer_none">None</string>
     <string name="upload_test_file_title">Test%1$d</string>
     <string name="upload_test_file_content">This is sample teleprompter text for the GD BLE SDK file upload demo. Replace it with your own content in a customer app.</string>
+
+    <string name="custom_message_title">Custom Message</string>
+    <string name="custom_message_subtitle">Enter a package name and string, then send it to the matching glasses app</string>
+    <string name="custom_message_pkg_label">App package name</string>
+    <string name="custom_message_pkg_placeholder">com.example.app</string>
+    <string name="custom_message_data_label">Payload.data string</string>
+    <string name="custom_message_data_placeholder">Enter the string to send to the target app</string>
+    <string name="section_custom_message_preview">Latest Sent JSON</string>
+    <string name="custom_message_no_preview">No message sent yet.</string>
 
     <string name="unknown_device">Unknown device</string>
     <string name="device_display_name">%1$s\n%2$s  RSSI: %3$d</string>
@@ -98,4 +109,9 @@
     <string name="log_file_transfer_upload_start">Start file upload: %1$s</string>
     <string name="log_file_transfer_upload_ack">Upload response received.</string>
     <string name="log_file_transfer_file_end">File transfer finished.</string>
+    <string name="log_custom_message_page_opened">Custom message page opened.</string>
+    <string name="log_custom_message_skip_not_connected">Skip custom message: device is not connected.</string>
+    <string name="log_custom_message_empty_pkg">Enter an app package name.</string>
+    <string name="log_custom_message_empty_data">Enter the string to send.</string>
+    <string name="log_custom_message_send">Send custom message to: %1$s</string>
 </resources>

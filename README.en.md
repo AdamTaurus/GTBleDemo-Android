@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-This repository is a minimal Android demo for third-party developers. It shows how to integrate the `GD BLE SDK` as a local AAR and how to scan, connect to BLE glasses, request device information, and send remote key events.
+This repository is a minimal Android demo for third-party developers. It shows how to integrate the `GD BLE SDK` as a local AAR and how to scan, connect to BLE glasses, request device information, send remote key events, transfer files, and send custom app messages.
 
 The demo is implemented with Kotlin and Jetpack Compose.
 
@@ -18,6 +18,7 @@ GTBleDemo/
 │       │   ├── MainActivity.kt      # Scan, connect, device info and feature entries
 │       │   ├── RemoteKeyActivity.kt # Remote key control sample
 │       │   ├── FileTransferActivity.kt # Teleprompter file transfer sample
+│       │   ├── CustomMessageActivity.kt # Custom app message sample
 │       │   └── Demo*.kt             # Compose components, theme, permissions and state models
 │       └── res/                     # Android resources
 ├── gradle/libs.versions.toml
@@ -75,6 +76,10 @@ The SDK does not request runtime permissions. The host app must request the requ
 - Raw protocol JSON logs
 - Parsed protocol message logs
 - File receive callback logs
+- Custom app message sending:
+  - User-entered target app package name
+  - User-entered string payload
+  - Send with `BleMsg(Action.APP_DATA, pkg, Payload(data = "..."))`
 - Teleprompter file transfer:
   - Query file list: `GDBleSdk.viewFile("com.goolton.teleprompter")`
   - Download file: `GDBleSdk.downloadFile(pkg, fileId)`
@@ -158,6 +163,17 @@ Upload a teleprompter text file:
 GDBleSdk.sendFile(file, "com.goolton.teleprompter")
 ```
 
+Send a custom app message:
+
+```kotlin
+val message = BleMsg(
+    action = Action.APP_DATA,
+    pkg = "com.example.app",
+    data = Payload(data = "hello from customer app")
+)
+GDBleSdk.sendMessage(message)
+```
+
 Remove the listener when the page is destroyed:
 
 ```kotlin
@@ -178,6 +194,7 @@ The main screen focuses on the basic connection flow and feature entries:
 - Device info display
 - Entry to the remote key screen
 - Entry to the file transfer screen
+- Entry to the custom message screen
 - Logs
 
 ### RemoteKeyActivity
@@ -196,6 +213,15 @@ The file transfer screen demonstrates teleprompter file APIs with the test packa
 - Download a file and show the local cache path
 - Generate and upload a timestamped txt test file
 - Show file transfer protocol messages and SDK callback logs
+
+### CustomMessageActivity
+
+The custom message screen demonstrates how to send a string to a target app on the glasses:
+
+- Enter the target app package name
+- Enter the string stored in `Payload.data`
+- Send an `Action.APP_DATA` protocol message
+- Show the latest sent JSON, protocol callbacks, and error logs
 
 ## Notes
 

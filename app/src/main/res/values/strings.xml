@@ -21,12 +21,14 @@
     <string name="button_device_info">设备信息</string>
     <string name="button_remote_keys">方向键</string>
     <string name="button_file_transfer">文件传输</string>
+    <string name="button_custom_message">自定义消息</string>
     <string name="button_connect">连接</string>
     <string name="button_reconnect">重新连接</string>
     <string name="button_back_to_main">返回主页</string>
     <string name="button_query_file_list">查询文件列表</string>
     <string name="button_upload_test_file">上传测试文件</string>
     <string name="button_download">下载</string>
+    <string name="button_send_custom_message">发送自定义消息</string>
 
     <string name="remote_key_title">方向键</string>
     <string name="remote_key_subtitle">向已连接的眼镜发送方向键事件</string>
@@ -53,6 +55,15 @@
     <string name="file_transfer_none">无</string>
     <string name="upload_test_file_title">测试%1$d</string>
     <string name="upload_test_file_content">这是一段用于 GD BLE SDK 文件上传演示的提词器文本。客户项目可以替换为自己的提词器内容。</string>
+
+    <string name="custom_message_title">自定义消息</string>
+    <string name="custom_message_subtitle">输入包名和字符串，将内容发送到眼镜端对应应用</string>
+    <string name="custom_message_pkg_label">应用包名</string>
+    <string name="custom_message_pkg_placeholder">com.example.app</string>
+    <string name="custom_message_data_label">Payload.data 字符串</string>
+    <string name="custom_message_data_placeholder">请输入要发送给目标应用的字符串</string>
+    <string name="section_custom_message_preview">最近发送 JSON</string>
+    <string name="custom_message_no_preview">暂无发送记录。</string>
 
     <string name="unknown_device">未知设备</string>
     <string name="device_display_name">%1$s\n%2$s  RSSI：%3$d</string>
@@ -98,4 +109,9 @@
     <string name="log_file_transfer_upload_start">开始上传文件：%1$s</string>
     <string name="log_file_transfer_upload_ack">收到上传响应。</string>
     <string name="log_file_transfer_file_end">文件传输结束。</string>
+    <string name="log_custom_message_page_opened">已打开自定义消息页面。</string>
+    <string name="log_custom_message_skip_not_connected">未连接设备，跳过发送自定义消息。</string>
+    <string name="log_custom_message_empty_pkg">请输入应用包名。</string>
+    <string name="log_custom_message_empty_data">请输入要发送的字符串。</string>
+    <string name="log_custom_message_send">发送自定义消息到：%1$s</string>
 </resources>

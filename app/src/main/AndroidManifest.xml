@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GTBleDemo">
         <activity
+            android:name=".CustomMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".FileTransferActivity"
             android:exported="false" />
         <activity
