@@ -3,6 +3,7 @@ package com.vs.gt.bledemo
 import com.goolton.ble.GDBleDevice
 import com.goolton.ble.protocol.BleFile
 import com.goolton.ble.protocol.DeviceInfo
+import com.goolton.ble.protocol.NetConfig
 
 /**
  * Demo 内部使用的连接状态。
@@ -65,5 +66,26 @@ data class CustomMessageUiState(
     val packageName: String = "",
     val dataText: String = "",
     val latestSentJson: String? = null,
+    val logs: List<String> = emptyList(),
+)
+
+/**
+ * Wi-Fi 图片页面展示所需状态。
+ *
+ * 图片列表来自 BLE 的 view_media 协议；缩略图和原图通过眼镜端 Wi-Fi HTTP 服务加载。
+ */
+data class WifiImageUiState(
+    val connected: Boolean = false,
+    val localIp: String? = null,
+    val netConfig: NetConfig? = null,
+    val baseUrl: String? = null,
+    val serviceRunning: Boolean = false,
+    val checkingService: Boolean = false,
+    val loadingImages: Boolean = false,
+    val page: Int = 0,
+    val total: Int = 0,
+    val images: List<BleFile> = emptyList(),
+    val selectedImage: BleFile? = null,
+    val selectedRawUrl: String? = null,
     val logs: List<String> = emptyList(),
 )

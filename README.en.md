@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-This repository is a minimal Android demo for third-party developers. It shows how to integrate the `GD BLE SDK` as a local AAR and how to scan, connect to BLE glasses, request device information, send remote key events, transfer files, and send custom app messages.
+This repository is a minimal Android demo for third-party developers. It shows how to integrate the `GD BLE SDK` as a local AAR and how to scan, connect to BLE glasses, request device information, send remote key events, transfer files, send custom app messages, and view images through the glasses Wi-Fi service.
 
 The demo is implemented with Kotlin and Jetpack Compose.
 
@@ -19,6 +19,7 @@ GTBleDemo/
 │       │   ├── RemoteKeyActivity.kt # Remote key control sample
 │       │   ├── FileTransferActivity.kt # Teleprompter file transfer sample
 │       │   ├── CustomMessageActivity.kt # Custom app message sample
+│       │   ├── WifiImageActivity.kt # Wi-Fi image viewing sample
 │       │   └── Demo*.kt             # Compose components, theme, permissions and state models
 │       └── res/                     # Android resources
 ├── gradle/libs.versions.toml
@@ -42,10 +43,12 @@ The demo depends on the SDK AAR directly:
 dependencies {
     implementation(files("libs/gd-ble-sdk-1.0.0.aar"))
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("io.coil-kt.coil3:coil-compose:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
 }
 ```
 
-When an AAR is referenced directly, Gradle does not read a POM file. Add the SDK runtime dependencies, such as Gson, in the host app.
+When an AAR is referenced directly, Gradle does not read a POM file. Add the SDK runtime dependencies, such as Gson, in the host app. The demo uses Coil to load thumbnails and full images from the Wi-Fi service.
 
 ## Permissions
 
@@ -58,9 +61,14 @@ The demo declares the required BLE and location permissions in `AndroidManifest.
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 
 The SDK does not request runtime permissions. The host app must request the required permissions before scanning or connecting. `MainActivity` demonstrates the permission flow for Android 12 and later, as well as older Android versions.
+
+Wi-Fi image viewing accesses a LAN HTTP service on the glasses. The demo enables `android:usesCleartextTraffic="true"` in the manifest.
 
 ## Implemented Features
 
@@ -80,6 +88,13 @@ The SDK does not request runtime permissions. The host app must request the requ
   - User-entered target app package name
   - User-entered string payload
   - Send with `BleMsg(Action.APP_DATA, pkg, Payload(data = "..."))`
+- Wi-Fi image viewing:
+  - Start the glasses Wi-Fi service: `GDBleSdk.startWifiService()`
+  - Health check: `GET http://{ip}:{port}/health`
+  - Query image list: `GDBleSdk.viewMedia("image", page, pageSize)`
+  - Load thumbnails: `GET http://{ip}:{port}/thumb/image/{id}`
+  - Load full images: `GET http://{ip}:{port}/raw/image/{id}`
+  - Stop the glasses Wi-Fi service: `GDBleSdk.stopWifiService()`
 - Teleprompter file transfer:
   - Query file list: `GDBleSdk.viewFile("com.goolton.teleprompter")`
   - Download file: `GDBleSdk.downloadFile(pkg, fileId)`
@@ -174,6 +189,24 @@ val message = BleMsg(
 GDBleSdk.sendMessage(message)
 ```
 
+Start the Wi-Fi image service and request the image list:
+
+```kotlin
+GDBleSdk.startWifiService()
+
+// After receiving Action.WIFI_SERVICE_START, parse NetConfig:
+val baseUrl = "http://${netConfig.ip}:${netConfig.port}"
+
+GDBleSdk.viewMedia(type = "image", page = 1, pageSize = 100)
+```
+
+Build image URLs:
+
+```kotlin
+val thumbUrl = "$baseUrl/thumb/image/${file.id}"
+val rawUrl = "$baseUrl/raw/image/${file.id}"
+```
+
 Remove the listener when the page is destroyed:
 
 ```kotlin
@@ -195,6 +228,7 @@ The main screen focuses on the basic connection flow and feature entries:
 - Entry to the remote key screen
 - Entry to the file transfer screen
 - Entry to the custom message screen
+- Entry to the Wi-Fi image screen
 - Logs
 
 ### RemoteKeyActivity
@@ -222,6 +256,17 @@ The custom message screen demonstrates how to send a string to a target app on t
 - Enter the string stored in `Payload.data`
 - Send an `Action.APP_DATA` protocol message
 - Show the latest sent JSON, protocol callbacks, and error logs
+
+### WifiImageActivity
+
+The Wi-Fi image screen demonstrates the glasses image service:
+
+- Shows the phone local IP and reminds the user to keep the phone and glasses on the same network segment
+- Starts and stops the glasses Wi-Fi service through BLE
+- Parses `NetConfig` and builds the `http://ip:port` service URL
+- Requests the image list after the health check succeeds
+- Loads thumbnails from `/thumb/image/{id}`
+- Loads the full image from `/raw/image/{id}` when a list item is tapped
 
 ## Notes
 

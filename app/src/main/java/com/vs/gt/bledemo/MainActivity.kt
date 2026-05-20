@@ -151,6 +151,9 @@ class MainActivity : ComponentActivity() {
                     onOpenCustomMessageClick = {
                         startActivity(Intent(this, CustomMessageActivity::class.java))
                     },
+                    onOpenWifiImageClick = {
+                        startActivity(Intent(this, WifiImageActivity::class.java))
+                    },
                 )
             }
         }
@@ -266,6 +269,7 @@ private fun MainScreen(
     onOpenRemoteKeyClick: () -> Unit,
     onOpenFileTransferClick: () -> Unit,
     onOpenCustomMessageClick: () -> Unit,
+    onOpenWifiImageClick: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -296,6 +300,7 @@ private fun MainScreen(
                 onOpenRemoteKeyClick = onOpenRemoteKeyClick,
                 onOpenFileTransferClick = onOpenFileTransferClick,
                 onOpenCustomMessageClick = onOpenCustomMessageClick,
+                onOpenWifiImageClick = onOpenWifiImageClick,
             )
         }
 
@@ -345,6 +350,7 @@ private fun ConnectionPanel(
     onOpenRemoteKeyClick: () -> Unit,
     onOpenFileTransferClick: () -> Unit,
     onOpenCustomMessageClick: () -> Unit,
+    onOpenWifiImageClick: () -> Unit,
 ) {
     val connected = state.connectionState == ConnectionUiState.Connected
     DemoCard {
@@ -423,6 +429,12 @@ private fun ConnectionPanel(
             modifier = Modifier.fillMaxWidth(),
             enabled = connected,
             onClick = onOpenCustomMessageClick,
+        )
+        RowButton(
+            text = stringResource(R.string.button_wifi_images),
+            modifier = Modifier.fillMaxWidth(),
+            enabled = connected,
+            onClick = onOpenWifiImageClick,
         )
     }
 }

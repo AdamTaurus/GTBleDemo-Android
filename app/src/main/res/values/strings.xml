@@ -22,6 +22,7 @@
     <string name="button_remote_keys">方向键</string>
     <string name="button_file_transfer">文件传输</string>
     <string name="button_custom_message">自定义消息</string>
+    <string name="button_wifi_images">Wi-Fi 图片</string>
     <string name="button_connect">连接</string>
     <string name="button_reconnect">重新连接</string>
     <string name="button_back_to_main">返回主页</string>
@@ -29,6 +30,8 @@
     <string name="button_upload_test_file">上传测试文件</string>
     <string name="button_download">下载</string>
     <string name="button_send_custom_message">发送自定义消息</string>
+    <string name="button_start_wifi_service">打开 Wi-Fi service</string>
+    <string name="button_stop_wifi_service">关闭 Wi-Fi service</string>
 
     <string name="remote_key_title">方向键</string>
     <string name="remote_key_subtitle">向已连接的眼镜发送方向键事件</string>
@@ -64,6 +67,25 @@
     <string name="custom_message_data_placeholder">请输入要发送给目标应用的字符串</string>
     <string name="section_custom_message_preview">最近发送 JSON</string>
     <string name="custom_message_no_preview">暂无发送记录。</string>
+
+    <string name="wifi_image_title">Wi-Fi 图片</string>
+    <string name="wifi_image_subtitle">开启眼镜端 Wi-Fi 服务，查看图片缩略图和原图</string>
+    <string name="wifi_image_same_network_tip">请和眼镜保持在同一网段</string>
+    <string name="wifi_image_local_ip">本机 IP：%1$s</string>
+    <string name="wifi_image_ip_unknown">未获取</string>
+    <string name="wifi_image_service_url">眼镜服务地址：%1$s</string>
+    <string name="wifi_image_service_url_none">未开启</string>
+    <string name="status_wifi_service_running">服务已开启</string>
+    <string name="status_wifi_service_checking">服务检测中</string>
+    <string name="status_wifi_service_stopped">服务未开启</string>
+    <string name="section_original_image">原图预览</string>
+    <string name="section_wifi_image_list">图片列表</string>
+    <string name="wifi_image_original_empty">点击图片列表项加载原图。</string>
+    <string name="wifi_image_loading_list">正在加载图片列表。</string>
+    <string name="wifi_image_empty_list">暂无图片，点击“打开 Wi-Fi service”获取图片列表。</string>
+    <string name="wifi_image_thumb_waiting">等待地址</string>
+    <string name="wifi_image_unnamed">未命名图片</string>
+    <string name="wifi_image_selected">已选择</string>
 
     <string name="unknown_device">未知设备</string>
     <string name="device_display_name">%1$s\n%2$s  RSSI：%3$d</string>
@@ -114,4 +136,18 @@
     <string name="log_custom_message_empty_pkg">请输入应用包名。</string>
     <string name="log_custom_message_empty_data">请输入要发送的字符串。</string>
     <string name="log_custom_message_send">发送自定义消息到：%1$s</string>
+    <string name="log_wifi_image_page_opened">已打开 Wi-Fi 图片页面。</string>
+    <string name="log_wifi_image_skip_not_connected">未连接设备，跳过 Wi-Fi 图片操作。</string>
+    <string name="log_wifi_image_start_service">请求打开 Wi-Fi service。</string>
+    <string name="log_wifi_image_stop_service">请求关闭 Wi-Fi service。</string>
+    <string name="log_wifi_image_protocol_error">协议返回错误：%1$s</string>
+    <string name="log_wifi_image_empty_net_config">Wi-Fi service 未返回有效网络配置。</string>
+    <string name="log_wifi_image_service_config">收到眼镜服务地址：%1$s</string>
+    <string name="log_wifi_image_health_ok">Wi-Fi service 可访问，开始请求图片列表。</string>
+    <string name="log_wifi_image_health_failed">Wi-Fi service 不可访问，请确认手机和眼镜在同一网段。</string>
+    <string name="log_wifi_image_request_page">请求图片列表第 %1$d 页。</string>
+    <string name="log_wifi_image_list_updated">图片列表已更新，共 %1$d 张。</string>
+    <string name="log_wifi_image_missing_base_url">缺少眼镜服务地址，无法加载原图。</string>
+    <string name="log_wifi_image_select_raw">加载原图：%1$s</string>
+    <string name="log_wifi_image_service_stopped">Wi-Fi service 已关闭。</string>
 </resources>

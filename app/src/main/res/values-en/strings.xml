@@ -22,6 +22,7 @@
     <string name="button_remote_keys">Remote Keys</string>
     <string name="button_file_transfer">File Transfer</string>
     <string name="button_custom_message">Custom Message</string>
+    <string name="button_wifi_images">Wi-Fi Images</string>
     <string name="button_connect">Connect</string>
     <string name="button_reconnect">Reconnect</string>
     <string name="button_back_to_main">Back to Main</string>
@@ -29,6 +30,8 @@
     <string name="button_upload_test_file">Upload Test File</string>
     <string name="button_download">Download</string>
     <string name="button_send_custom_message">Send Custom Message</string>
+    <string name="button_start_wifi_service">Start Wi-Fi Service</string>
+    <string name="button_stop_wifi_service">Stop Wi-Fi Service</string>
 
     <string name="remote_key_title">Remote Keys</string>
     <string name="remote_key_subtitle">Send directional key events to the connected glasses</string>
@@ -64,6 +67,25 @@
     <string name="custom_message_data_placeholder">Enter the string to send to the target app</string>
     <string name="section_custom_message_preview">Latest Sent JSON</string>
     <string name="custom_message_no_preview">No message sent yet.</string>
+
+    <string name="wifi_image_title">Wi-Fi Images</string>
+    <string name="wifi_image_subtitle">Start the glasses Wi-Fi service, then view thumbnails and full images</string>
+    <string name="wifi_image_same_network_tip">Keep the phone and glasses on the same network segment</string>
+    <string name="wifi_image_local_ip">Local IP: %1$s</string>
+    <string name="wifi_image_ip_unknown">Unknown</string>
+    <string name="wifi_image_service_url">Glasses service URL: %1$s</string>
+    <string name="wifi_image_service_url_none">Not started</string>
+    <string name="status_wifi_service_running">Service Running</string>
+    <string name="status_wifi_service_checking">Checking Service</string>
+    <string name="status_wifi_service_stopped">Service Stopped</string>
+    <string name="section_original_image">Original Image</string>
+    <string name="section_wifi_image_list">Image List</string>
+    <string name="wifi_image_original_empty">Tap an image list item to load the original image.</string>
+    <string name="wifi_image_loading_list">Loading image list.</string>
+    <string name="wifi_image_empty_list">No images yet. Tap Start Wi-Fi Service to load the list.</string>
+    <string name="wifi_image_thumb_waiting">Waiting URL</string>
+    <string name="wifi_image_unnamed">Unnamed image</string>
+    <string name="wifi_image_selected">Selected</string>
 
     <string name="unknown_device">Unknown device</string>
     <string name="device_display_name">%1$s\n%2$s  RSSI: %3$d</string>
@@ -114,4 +136,18 @@
     <string name="log_custom_message_empty_pkg">Enter an app package name.</string>
     <string name="log_custom_message_empty_data">Enter the string to send.</string>
     <string name="log_custom_message_send">Send custom message to: %1$s</string>
+    <string name="log_wifi_image_page_opened">Wi-Fi image page opened.</string>
+    <string name="log_wifi_image_skip_not_connected">Skip Wi-Fi image operation: device is not connected.</string>
+    <string name="log_wifi_image_start_service">Request start Wi-Fi service.</string>
+    <string name="log_wifi_image_stop_service">Request stop Wi-Fi service.</string>
+    <string name="log_wifi_image_protocol_error">Protocol error: %1$s</string>
+    <string name="log_wifi_image_empty_net_config">Wi-Fi service did not return a valid network config.</string>
+    <string name="log_wifi_image_service_config">Glasses service URL received: %1$s</string>
+    <string name="log_wifi_image_health_ok">Wi-Fi service is reachable. Requesting image list.</string>
+    <string name="log_wifi_image_health_failed">Wi-Fi service is unreachable. Keep the phone and glasses on the same network segment.</string>
+    <string name="log_wifi_image_request_page">Request image list page %1$d.</string>
+    <string name="log_wifi_image_list_updated">Image list updated: %1$d images.</string>
+    <string name="log_wifi_image_missing_base_url">Missing glasses service URL; cannot load original image.</string>
+    <string name="log_wifi_image_select_raw">Load original image: %1$s</string>
+    <string name="log_wifi_image_service_stopped">Wi-Fi service stopped.</string>
 </resources>
