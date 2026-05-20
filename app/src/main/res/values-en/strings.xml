@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">GD BLE Demo</string>
+
+    <string name="main_title">GD BLE SDK Demo</string>
+    <string name="main_subtitle">Connection, device info and feature entries</string>
+    <string name="section_devices">Devices</string>
+    <string name="section_device_info">Device Info</string>
+    <string name="section_logs">Logs</string>
+    <string name="empty_devices">Tap Scan to find nearby BLE glasses.</string>
+    <string name="empty_logs">No logs yet.</string>
+
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connecting">Connecting</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_scanning">Scanning</string>
+    <string name="status_idle">Idle</string>
+
+    <string name="button_scan">Scan</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_disconnect">Disconnect</string>
+    <string name="button_device_info">Device Info</string>
+    <string name="button_remote_keys">Remote Keys</string>
+    <string name="button_connect">Connect</string>
+    <string name="button_reconnect">Reconnect</string>
+    <string name="button_back_to_main">Back to Main</string>
+
+    <string name="remote_key_title">Remote Keys</string>
+    <string name="remote_key_subtitle">Send directional key events to the connected glasses</string>
+    <string name="key_up">Up</string>
+    <string name="key_down">Down</string>
+    <string name="key_left">Left</string>
+    <string name="key_right">Right</string>
+    <string name="key_ok">OK</string>
+    <string name="key_back">Back</string>
+    <string name="key_home">Home</string>
+    <string name="key_refresh">Refresh</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="device_display_name">%1$s\n%2$s  RSSI: %3$d</string>
+    <string name="device_rssi">%1$s  RSSI: %2$d</string>
+    <string name="device_info_empty">Connect a device and tap Device Info.</string>
+    <string name="device_info_serial">Serial: %1$s</string>
+    <string name="device_info_battery">Battery: %1$d%%</string>
+    <string name="device_info_charging">Charging: %1$s</string>
+    <string name="device_info_network_connected">Network connected: %1$s</string>
+    <string name="device_info_apps">Apps: %1$s</string>
+    <string name="device_info_apps_none">None</string>
+    <string name="boolean_true">Yes</string>
+    <string name="boolean_false">No</string>
+
+    <string name="disconnect_reason_demo">demo disconnect</string>
+    <string name="log_permissions_granted">Permissions granted.</string>
+    <string name="log_permissions_denied">Permissions denied: %1$s</string>
+    <string name="log_scan_state">Scan state: %1$s</string>
+    <string name="log_found_device">Found: %1$s</string>
+    <string name="log_connected">Connected: %1$s</string>
+    <string name="log_message">Message: action=%1$s, cmd=%2$s</string>
+    <string name="log_raw">Raw: %1$s</string>
+    <string name="log_device_info_updated">Device info updated.</string>
+    <string name="log_file_received">File received: %1$s</string>
+    <string name="log_error">Error: %1$s</string>
+    <string name="log_sdk_initialized">GD BLE SDK initialized.</string>
+    <string name="log_bluetooth_disabled">Bluetooth is disabled; opening settings.</string>
+    <string name="log_request_permissions">Request permissions: %1$s</string>
+    <string name="log_start_scan">Start scan.</string>
+    <string name="log_connect_device">Connect: %1$s</string>
+    <string name="log_skip_device_info_not_connected">Skip getDeviceInfo: device is not connected.</string>
+    <string name="log_request_device_info">Request device info.</string>
+    <string name="log_remote_page_opened">Remote key page opened.</string>
+    <string name="log_skip_key_not_connected">Skip %1$s: device is not connected.</string>
+    <string name="log_send_key">Send key: %1$s</string>
+</resources>
