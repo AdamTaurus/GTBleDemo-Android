@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.goolton.ble.GDBleDevice
 import com.google.gson.annotations.SerializedName
 import com.goolton.ble.GDBleListener
 import com.goolton.ble.GDBleSdk
@@ -74,6 +75,10 @@ class WifiImageActivity : ComponentActivity() {
      * 图片二进制数据通过 HTTP 加载，路径和 PhoneAssistant 相册模块保持一致。
      */
     private val sdkListener = object : GDBleListener {
+        override fun onScanStateChanged(scanning: Boolean) = Unit
+
+        override fun onDeviceFound(device: GDBleDevice) = Unit
+
         override fun onConnectionStateChanged(connected: Boolean) {
             runOnUiThread {
                 uiState = uiState.copy(connected = connected)
@@ -93,6 +98,8 @@ class WifiImageActivity : ComponentActivity() {
                 appendLog(getString(R.string.log_raw, json))
             }
         }
+
+        override fun onFileReceived(absolutePath: String) = Unit
 
         override fun onError(error: Throwable) {
             runOnUiThread {

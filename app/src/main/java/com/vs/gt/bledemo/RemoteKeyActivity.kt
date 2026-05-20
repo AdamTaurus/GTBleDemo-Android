@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.goolton.ble.GDBleKey
+import com.goolton.ble.GDBleDevice
 import com.goolton.ble.GDBleListener
 import com.goolton.ble.GDBleSdk
 import com.goolton.ble.protocol.BleMsg
@@ -38,6 +39,10 @@ class RemoteKeyActivity : ComponentActivity() {
      * onMessageReceived/onRawMessageReceived。
      */
     private val sdkListener = object : GDBleListener {
+        override fun onScanStateChanged(scanning: Boolean) = Unit
+
+        override fun onDeviceFound(device: GDBleDevice) = Unit
+
         override fun onConnectionStateChanged(connected: Boolean) {
             runOnUiThread {
                 uiState = uiState.copy(connected = connected)
@@ -56,6 +61,8 @@ class RemoteKeyActivity : ComponentActivity() {
                 appendLog(getString(R.string.log_raw, json))
             }
         }
+
+        override fun onFileReceived(absolutePath: String) = Unit
 
         override fun onError(error: Throwable) {
             runOnUiThread {

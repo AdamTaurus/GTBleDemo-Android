@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.goolton.ble.GDBleDevice
 import com.goolton.ble.GDBleListener
 import com.goolton.ble.GDBleSdk
 import com.goolton.ble.protocol.Action
@@ -46,6 +47,10 @@ class FileTransferActivity : ComponentActivity() {
      * SDK 已经把底层分片、缓存文件保存等逻辑封装好，客户侧只需要根据协议消息更新 UI。
      */
     private val sdkListener = object : GDBleListener {
+        override fun onScanStateChanged(scanning: Boolean) = Unit
+
+        override fun onDeviceFound(device: GDBleDevice) = Unit
+
         override fun onConnectionStateChanged(connected: Boolean) {
             runOnUiThread {
                 uiState = uiState.copy(connected = connected)
