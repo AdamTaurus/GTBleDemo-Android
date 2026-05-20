@@ -85,9 +85,10 @@ Wi-Fi image viewing accesses a LAN HTTP service on the glasses. The demo enables
 - Parsed protocol message logs
 - File receive callback logs
 - Custom app message sending:
-  - User-entered target app package name
-  - User-entered string payload
-  - Send with `BleMsg(Action.APP_DATA, pkg, Payload(data = "..."))`
+  - User-entered target glasses app package name and string payload
+  - Send to the glasses Content Center with `BleMsg(Action.APP_DATA, pkg, Payload(data = "..."))`
+  - Content Center looks up the target app by `pkg` and forwards the message
+  - The target glasses app must integrate the [GTBle](https://github.com/AdamTaurus/GTBle) `content_sdk` to receive it
 - Wi-Fi image viewing:
   - Start the glasses Wi-Fi service: `GDBleSdk.startWifiService()`
   - Health check: `GET http://{ip}:{port}/health`
@@ -188,6 +189,8 @@ GDBleSdk.sendFile(file, "com.goolton.teleprompter")
 
 Send a custom app message:
 
+The phone app only sends the message to the glasses Content Center. `pkg` must be the real package name of the target glasses app. Content Center uses that package name to find and forward the message. The target glasses app must integrate the [GTBle](https://github.com/AdamTaurus/GTBle) `content_sdk`.
+
 ```kotlin
 val message = BleMsg(
     action = Action.APP_DATA,
@@ -195,6 +198,31 @@ val message = BleMsg(
     data = Payload(data = "hello from customer app")
 )
 GDBleSdk.sendMessage(message)
+```
+
+Minimal receive flow on the glasses app:
+
+```kotlin
+ContentCenterManager.init(context) { connected ->
+    Log.d("ContentSdkClient", "AIDL connected = $connected")
+}
+ContentCenterManager.addListener(object : ContentCenterManager.Callback {
+    override fun onCtrlReceive(message: String) {
+        // message is the protocol JSON forwarded by Content Center.
+        // The string sent by the phone is in data.data.
+    }
+})
+```
+
+Parse `APP_DATA`:
+
+```kotlin
+override fun onCtrlReceive(message: String) {
+    val msg = Gson().fromJson(message, BleMsg::class.java)
+    if (msg.action == Action.APP_DATA) {
+        val text = msg.data?.data
+    }
+}
 ```
 
 Start the Wi-Fi image service and request the image list:
@@ -268,11 +296,13 @@ The file transfer screen demonstrates teleprompter file APIs with the test packa
 
 ### CustomMessageActivity
 
-The custom message screen demonstrates how to send a string to a target app on the glasses:
+The custom message screen demonstrates the forwarding chain: phone app -> glasses Content Center -> target glasses app.
 
-- Enter the target app package name
-- Enter the string stored in `Payload.data`
-- Send an `Action.APP_DATA` protocol message
+- Enter the target glasses app package name and the string to send
+- Store the string in `Payload.data`
+- Send an `Action.APP_DATA` protocol message to Content Center
+- Content Center finds the target app by `pkg` and forwards the message
+- The target glasses app must integrate the [GTBle](https://github.com/AdamTaurus/GTBle) `content_sdk`; otherwise the message reaches Content Center but not the business app
 - Show the latest sent JSON, protocol callbacks, and error logs
 
 ### WifiImageActivity
