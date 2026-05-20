@@ -1,5 +1,7 @@
 # GD BLE Android Demo
 
+[English](README.en.md)
+
 这是一个面向第三方客户的最小 Android Demo，用于演示如何通过本地 AAR 接入 `GD BLE SDK`，并完成 BLE 眼镜设备的扫描、连接、设备信息读取和方向键控制。
 
 Demo 使用 Kotlin + Jetpack Compose 实现。

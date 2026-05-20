@@ -1,5 +1,7 @@
 # GD BLE Android Demo
 
+[中文](README.md)
+
 This repository is a minimal Android demo for third-party developers. It shows how to integrate the `GD BLE SDK` as a local AAR and how to scan, connect to BLE glasses, request device information, and send remote key events.
 
 The demo is implemented with Kotlin and Jetpack Compose.
@@ -168,4 +170,3 @@ The remote key screen demonstrates the key control API:
 - This demo is for SDK integration reference only. It does not include production-level error recovery, permission rationale dialogs, or complete business UI.
 - BLE scanning and connection should be verified on a physical device. Emulators usually cannot validate the full BLE flow.
 - If you replace the SDK AAR, keep the file name `app/libs/gd-ble-sdk-1.0.0.aar` or update `app/build.gradle.kts` accordingly.
-
