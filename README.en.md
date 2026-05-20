@@ -17,6 +17,7 @@ GTBleDemo/
 │       ├── java/com/vs/gt/bledemo/
 │       │   ├── MainActivity.kt      # Scan, connect, device info and feature entries
 │       │   ├── RemoteKeyActivity.kt # Remote key control sample
+│       │   ├── FileTransferActivity.kt # Teleprompter file transfer sample
 │       │   └── Demo*.kt             # Compose components, theme, permissions and state models
 │       └── res/                     # Android resources
 ├── gradle/libs.versions.toml
@@ -74,6 +75,10 @@ The SDK does not request runtime permissions. The host app must request the requ
 - Raw protocol JSON logs
 - Parsed protocol message logs
 - File receive callback logs
+- Teleprompter file transfer:
+  - Query file list: `GDBleSdk.viewFile("com.goolton.teleprompter")`
+  - Download file: `GDBleSdk.downloadFile(pkg, fileId)`
+  - Upload a generated txt file: `GDBleSdk.sendFile(file, pkg)`
 - Remote key control:
   - `UP`
   - `DOWN`
@@ -135,6 +140,24 @@ GDBleSdk.sendKey(GDBleKey.CENTER)
 GDBleSdk.sendKey(GDBleKey.BACK)
 ```
 
+Query the teleprompter file list:
+
+```kotlin
+GDBleSdk.viewFile("com.goolton.teleprompter")
+```
+
+Download a teleprompter file:
+
+```kotlin
+GDBleSdk.downloadFile("com.goolton.teleprompter", fileId)
+```
+
+Upload a teleprompter text file:
+
+```kotlin
+GDBleSdk.sendFile(file, "com.goolton.teleprompter")
+```
+
 Remove the listener when the page is destroyed:
 
 ```kotlin
@@ -154,6 +177,7 @@ The main screen focuses on the basic connection flow and feature entries:
 - Connect and disconnect
 - Device info display
 - Entry to the remote key screen
+- Entry to the file transfer screen
 - Logs
 
 ### RemoteKeyActivity
@@ -163,6 +187,15 @@ The remote key screen demonstrates the key control API:
 - Shows current connection status
 - Calls `GDBleSdk.sendKey(...)` when a key is tapped
 - Shows sent key logs and SDK callback logs
+
+### FileTransferActivity
+
+The file transfer screen demonstrates teleprompter file APIs with the test package `com.goolton.teleprompter`:
+
+- Query file list
+- Download a file and show the local cache path
+- Generate and upload a timestamped txt test file
+- Show file transfer protocol messages and SDK callback logs
 
 ## Notes
 

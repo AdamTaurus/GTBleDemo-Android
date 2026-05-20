@@ -20,9 +20,13 @@
     <string name="button_disconnect">断开</string>
     <string name="button_device_info">设备信息</string>
     <string name="button_remote_keys">方向键</string>
+    <string name="button_file_transfer">文件传输</string>
     <string name="button_connect">连接</string>
     <string name="button_reconnect">重新连接</string>
     <string name="button_back_to_main">返回主页</string>
+    <string name="button_query_file_list">查询文件列表</string>
+    <string name="button_upload_test_file">上传测试文件</string>
+    <string name="button_download">下载</string>
 
     <string name="remote_key_title">方向键</string>
     <string name="remote_key_subtitle">向已连接的眼镜发送方向键事件</string>
@@ -34,6 +38,21 @@
     <string name="key_back">返回</string>
     <string name="key_home">主页</string>
     <string name="key_refresh">刷新</string>
+
+    <string name="file_transfer_title">文件传输</string>
+    <string name="file_transfer_subtitle">演示提词器文件列表、下载和 txt 文件上传</string>
+    <string name="file_transfer_test_pkg">测试包名：%1$s</string>
+    <string name="section_file_list">文件列表</string>
+    <string name="section_transfer_result">传输结果</string>
+    <string name="empty_file_list">暂无文件，点击“查询文件列表”刷新。</string>
+    <string name="file_item_id">ID：%1$d</string>
+    <string name="file_item_size">大小：%1$d B</string>
+    <string name="file_item_time">时间：%1$s</string>
+    <string name="file_transfer_latest_upload">最近上传文件：%1$s</string>
+    <string name="file_transfer_latest_download">最近下载文件：%1$s</string>
+    <string name="file_transfer_none">无</string>
+    <string name="upload_test_file_title">测试%1$d</string>
+    <string name="upload_test_file_content">这是一段用于 GD BLE SDK 文件上传演示的提词器文本。客户项目可以替换为自己的提词器内容。</string>
 
     <string name="unknown_device">未知设备</string>
     <string name="device_display_name">%1$s\n%2$s  RSSI：%3$d</string>
@@ -69,4 +88,14 @@
     <string name="log_remote_page_opened">已打开方向键页面。</string>
     <string name="log_skip_key_not_connected">未连接设备，跳过发送按键：%1$s</string>
     <string name="log_send_key">发送按键：%1$s</string>
+    <string name="log_file_transfer_page_opened">已打开文件传输页面。</string>
+    <string name="log_file_transfer_skip_not_connected">未连接设备，跳过文件传输操作。</string>
+    <string name="log_file_transfer_request_list">请求文件列表：%1$s</string>
+    <string name="log_file_transfer_list_updated">文件列表已更新，共 %1$d 个文件。</string>
+    <string name="log_file_transfer_download_request">请求下载文件：%1$s（ID：%2$d）</string>
+    <string name="log_file_transfer_download_ack">收到下载响应：%1$s</string>
+    <string name="log_file_transfer_upload_created">已创建测试文件：%1$s</string>
+    <string name="log_file_transfer_upload_start">开始上传文件：%1$s</string>
+    <string name="log_file_transfer_upload_ack">收到上传响应。</string>
+    <string name="log_file_transfer_file_end">文件传输结束。</string>
 </resources>

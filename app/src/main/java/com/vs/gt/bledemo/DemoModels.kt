@@ -1,6 +1,7 @@
 package com.vs.gt.bledemo
 
 import com.goolton.ble.GDBleDevice
+import com.goolton.ble.protocol.BleFile
 import com.goolton.ble.protocol.DeviceInfo
 
 /**
@@ -37,5 +38,18 @@ data class MainUiState(
  */
 data class RemoteKeyUiState(
     val connected: Boolean = false,
+    val logs: List<String> = emptyList(),
+)
+
+/**
+ * 文件传输页面展示所需状态。
+ *
+ * 文件列表、下载路径和上传路径都来自 SDK 回调；Demo 不做持久化，客户项目可以按业务需要保存。
+ */
+data class FileTransferUiState(
+    val connected: Boolean = false,
+    val files: List<BleFile> = emptyList(),
+    val latestUploadPath: String? = null,
+    val latestDownloadPath: String? = null,
     val logs: List<String> = emptyList(),
 )

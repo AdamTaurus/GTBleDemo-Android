@@ -145,6 +145,9 @@ class MainActivity : ComponentActivity() {
                     onOpenRemoteKeyClick = {
                         startActivity(Intent(this, RemoteKeyActivity::class.java))
                     },
+                    onOpenFileTransferClick = {
+                        startActivity(Intent(this, FileTransferActivity::class.java))
+                    },
                 )
             }
         }
@@ -258,6 +261,7 @@ private fun MainScreen(
     onConnectClick: (GDBleDevice) -> Unit,
     onRefreshDeviceInfoClick: () -> Unit,
     onOpenRemoteKeyClick: () -> Unit,
+    onOpenFileTransferClick: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -286,6 +290,7 @@ private fun MainScreen(
                 onDisconnectClick = onDisconnectClick,
                 onRefreshDeviceInfoClick = onRefreshDeviceInfoClick,
                 onOpenRemoteKeyClick = onOpenRemoteKeyClick,
+                onOpenFileTransferClick = onOpenFileTransferClick,
             )
         }
 
@@ -333,6 +338,7 @@ private fun ConnectionPanel(
     onDisconnectClick: () -> Unit,
     onRefreshDeviceInfoClick: () -> Unit,
     onOpenRemoteKeyClick: () -> Unit,
+    onOpenFileTransferClick: () -> Unit,
 ) {
     val connected = state.connectionState == ConnectionUiState.Connected
     DemoCard {
@@ -400,6 +406,12 @@ private fun ConnectionPanel(
                 onClick = onOpenRemoteKeyClick,
             )
         }
+        RowButton(
+            text = stringResource(R.string.button_file_transfer),
+            modifier = Modifier.fillMaxWidth(),
+            enabled = connected,
+            onClick = onOpenFileTransferClick,
+        )
     }
 }
 
